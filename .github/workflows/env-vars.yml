@@ -1,0 +1,26 @@
+name: Environment Variables
+
+on: push
+
+env:
+  GLOBAL_VAR: "Available in all jobs"
+
+jobs:
+  demo:
+    runs-on: ubuntu-latest
+    env:
+      JOB_VAR: "Available only in this job"
+    steps:
+      - name: Use variables
+        run: |
+          echo "Global: $GLOBAL_VAR"
+          echo "Job: $JOB_VAR"
+          echo "Step-specific variable"
+        env:
+          STEP_VAR: "Only in this step"
+    
+      - name: Github context
+        run: |
+          echo "Repository: ${{ github.repository }}"
+          echo "Branch: ${{ github.ref}}"
+          echo "Commit SHA: ${{ github.sha }}"
