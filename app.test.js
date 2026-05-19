@@ -13,5 +13,11 @@ describe('API Endpoints', () =>{
         expect(response.statusCode).toBe(200);
         expect(response.body.status).toBe('healthy');
     })
+
+    test('GET /version returns version info', async () => {
+        const response = await request(app).get('/version');
+        expect(response.status).toBe(200);
+        expect(response.body.version).toBe('1.0.0');
+    });
 })
 
